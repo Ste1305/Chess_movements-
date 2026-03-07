@@ -1,118 +1,119 @@
 #include <stdio.h>
 
-// prototipo da função para os movimentos da Torre 
-void torre(int n);
+// function prototype for Tower movements
+void tower(int n);
 
-//prototipo da função para os movimentos da Rainha 
-void rainha(int n);
+// function prototype for Queen movements 
+void queen(int n);
 
-//prototipo da função para os movimentos do Cavalo
-void cavalo();
+// function prototype for Knights movements
+void knight();
 
-//prototipo da função para os movimentos do Bispo 
-void bispo(int n);
+// function prototype for Bishop movements 
+void bishop(int n);
 
 int main(){
 
-    //declaração variaveis
-    char peça, voltarJogo; //variaveis para a escolha da peça a ser movimentada e para voltar ao Jogo
-    int escolhaMenu; //variavel para a escolha do menu 
-    int movTorre, movRainha, movBispo, movCavalo;
-    //introdução
-    printf("\t*** JOGO DO XADREZ ***\n");
-    //menu principal com switch e do_while para voltar
+    //declaring variables
+    char piece, returnGame; //variables to choose what piece will move and to return game
+    int menuChoice; //menu choice
+    int movTower, movQueen, movBishop; //how many movements for pieces
+
+    //introduction
+    printf("\t*** CHESS GAME SIMULATION ***\n");
+    //main menu with switch structure and do_while
     do{
-        printf("Bem-vindo ao Jogo do Xadrez.\nMenu principal: \n1 - Regras\n2 - Jogar\n3 - Sair\n"); scanf("%d", &escolhaMenu);
+        printf("Welcome to the Chess Game Simulation.\nMain Menu: \n1 - Rules\n2 - Play\n3 - Quit\n"); scanf("%d", &menuChoice);
     
-        switch(escolhaMenu){
-        case 1: printf("\tREGRAS ***\n"); //regras do jogo
-                printf("Torre move em linea reta, horizontal e vertical\n");
-                printf("Bispo move em diagonal\n");
-                printf("Rainha move em todas as direções\n");
-                printf("Cavalo move em L: duas casas en linea reta e uma casa perpendicular\n\n"); 
-                //possibilidade de jogar de novo ou de sair
-                printf("Quer jogar de novo?: S/N\n"); scanf(" %c", &voltarJogo);
-                if(voltarJogo == 'n' || voltarJogo == 'N'){
-                    escolhaMenu = 3; printf("Obrigado por ter jogado!\nAté á proxima!\nSaindo...\n");
-                } else if(voltarJogo == 's' || voltarJogo == 'S'){
-                    escolhaMenu = 2;
+        switch(menuChoice){
+        case 1: printf("\tRULES ***\n"); //game rules
+                printf("Tower moves straight to the right\n");
+                printf("Bishop move diagonally, up and right\n");
+                printf("Queen moves straight to the left\n");
+                printf("Knight moves like an L: 2 straight up and 1 laterally right\n\n"); 
+                //choose to play again or quit
+                printf("Do you want to play again?: Y/N\n"); scanf(" %c", &returnGame);
+                if(returnGame == 'n' || returnGame == 'N'){
+                    menuChoice = 3; printf("Thank you for playing!\nSee you next time!\nQuitting game...\n");
+                } else if(returnGame == 'y' || returnGame == 'Y'){
+                    menuChoice = 2;
                 }else{
-                    printf("Escolha invalida\n");
+                    printf("Invalid choice\n");
                 }
                 break;
-        case 2: printf("Escolha a peça que quer utilizar: \nT - Torre\nB - Bispo\nR - Rainha\nC - Cavalo\n"); scanf(" %c", &peça); printf("\n"); //peça para movimentar
-                switch(peça){
-                    //Torre
+        case 2: printf("Choose the piece you want to move: \nT - Tower\nB - Bishop\nQ - Queen\nK - Knight\n"); scanf(" %c", &piece); printf("\n"); //piece to move
+                switch(piece){
+                    //Tower
                     case 't':
-                    case 'T': printf("Você escolheu: Torre\n\n"); printf("Digite quantos movimentos quer fazer: \n"); scanf("%d", &movTorre); 
-                    printf("\t****Movimentos da Torre:\n"); 
-                    //função da Torre
-                    torre(movTorre);
-                    printf("Total: %d casas para Direita\n\n", movTorre);
+                    case 'T': printf("You choose: Tower\n\n"); printf("How many moves do you want to perform?: \n"); scanf("%d", &movTower); 
+                    printf("\t****Tower's movements:\n"); 
+                    //Tower function
+                    tower(movTower);
+                    printf("Total: %d cases to the right\n\n", movTower);
                     break;
-                    //Bispo
+                    //Bishop
                     case 'b':
-                    case 'B': printf("Você escolheu: Bispo\n\n"); printf("Digite quantos movimentos quer fazer: \n"); scanf("%d", &movBispo);
-                    printf("\t****Movimentos do Bispo:\n");
-                    //função do Bispo
-                    bispo(movBispo);
-                    printf("Total: %d casas em diagonal pra Cima á Direita\n\n", movBispo);
+                    case 'B': printf("You choose: Bishop\n\n"); printf("How many moves do you want to perform?: \n"); scanf("%d", &movBishop);
+                    printf("\t****Bishop's movements:\n");
+                    //Bishop function
+                    bishop(movBishop);
+                    printf("Total: %d cases diagonally up and right\n\n", movBishop);
                     break;
-                    //Rainha
-                    case 'r':
-                    case 'R': printf("Você escolheu: Rainha\n\n"); printf("Digite quantos movimentos quer fazer: \n"); scanf("%d", &movRainha);
-                     printf("\t****Movimentos da Rainha:\n");
-                    //função da Rainha
-                    rainha(movRainha);
-                    printf("Total: %d casas para Direita\n\n", movRainha);
+                    //Queen
+                    case 'q':
+                    case 'Q': printf("You choose: Queen\n\n"); printf("How many moves do you want to perform?: \n"); scanf("%d", &movQueen);
+                     printf("\t****Queen's movements:\n");
+                    //Queen function
+                    queen(movQueen);
+                    printf("Total: %d cases to the left\n\n", movQueen);
                     break;
-                    //Cavalo
-                    case 'c':
-                    case 'C': printf("Você escolheu: Cavalo\n\n"); printf("Digite quantos movimentos quer fazer: \n"); scanf("%d", &movCavalo); 
-                    printf("\t****Movimentos do Cavalo:\n");
-                    //função do Cavalo
-                    cavalo();
+                    //Knight
+                    case 'k':
+                    case 'K': printf("You choose: Knight\n\n");  
+                    printf("\t****Knight's movements:\n");
+                    //Knight function
+                    knight();
                     break;
-                    default: printf("Escolha invalida\n");
+                    default: printf("Invalid choice\n");
                 } break;
-        case 3: printf("Obrigado por ter jogado!\nAté á proxima!\nSaindo...\n"); break;
-        default: printf("Por favor escolha um valor entre 1 e 3\n\n");
+        case 3: printf("Thank you for playing!\nSee you next time!\nQuitting game...\n"); break;
+        default: printf("Please enter a number between 1 and 3\n\n");
         } 
-    } while(escolhaMenu != 3);
+    } while(menuChoice != 3);
     
     return 0;
 }
 
-//função para os movimentos da Torre com recursividade
-void torre(int n){
-    if(n <= 0) return; //base case da recursividade
+//Tower recursive function 
+void tower(int n){
+    if(n <= 0) return; //recursive base case
     for(int i = 1; i < 2; i++){
-        printf("Direita\n");
-    } torre(n -1);
+        printf("Right\n");
+    } tower(n -1);
 }
 
-//função para os movimentos da Rainha com recursividade
-void rainha(int n){
+//Queen recursive function
+void queen(int n){
     if(n <= 0) return;
     for(int i = 1; i < 2; i++){
-        printf("Esquerda\n");
-    } rainha(n - 1);
+        printf("Left\n");
+    } queen(n - 1);
 }
 
-//função para os movimentos do Cavalo com loop complexo de duas variaveis e continue
-void cavalo(){
+//Knight function with complex for loop (2 variables)
+void knight(){
     for(int i = 1, j = 0; j < 2; i++, j++){
-        printf("Acima\n"); if(j == 0) continue; printf("Direita\n");
+        printf("Up\n"); if(j == 0) continue; printf("Right\n");
     } 
 }     
 
-//função para os movimentos do Bispo com recursividade e loops aninhados
-void bispo(int n){
+//Bihop recursive function with nested for loops
+void bishop(int n){
     if(n <= 0) return; { 
-        for(int i = 1; i < 2; i++){ //loop externo para cima
-            for(int j = 1; j == i; j++){ //loop interno para esquerda
-                printf("Direita\n");
-            } printf("Acima\n");
+        for(int i = 1; i < 2; i++){ //extrenal loop showing Up movements
+            for(int j = 1; j == i; j++){ //internal loops showing Right movements
+                printf("Right\n");
+            } printf("Up\n");
         }
-    } bispo(n - 1);// recursividade
+    } bishop(n - 1);// recursion
 } 
