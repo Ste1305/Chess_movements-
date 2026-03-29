@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 // function prototype for Tower movements
-void tower(int n);
+void tower(char dir, int n);
 
 // function prototype for Queen movements 
 void queen(int n);
@@ -18,6 +18,7 @@ int main(){
     char piece, returnGame; //variables to choose what piece will move and to return game
     int menuChoice; //menu choice
     int movTower, movQueen, movBishop; //how many movements for pieces
+    char dirTower;
 
     //introduction
     printf("\t*** CHESS GAME SIMULATION ***\n");
@@ -27,7 +28,7 @@ int main(){
     
         switch(menuChoice){
         case 1: printf("\tRULES ***\n"); //game rules
-                printf("Tower moves straight to the right\n");
+                printf("Tower moves straight: U - Up, D - Down, L - Left, R - Right\n");
                 printf("Bishop move diagonally, up and right\n");
                 printf("Queen moves straight to the left\n");
                 printf("Knight moves like an L: 2 straight up and 1 laterally right\n\n"); 
@@ -45,11 +46,11 @@ int main(){
                 switch(piece){
                     //Tower
                     case 't':
-                    case 'T': printf("You choose: Tower\n\n"); printf("How many moves do you want to perform?: \n"); scanf("%d", &movTower); 
+                    case 'T': printf("You choose: Tower\n\n"); printf("Wich direction should moves?: \n"); scanf(" %c", &dirTower); printf("How many moves do you want to perform?: \n"); scanf("%d", &movTower); 
                     printf("\t****Tower's movements:\n"); 
                     //Tower function
-                    tower(movTower);
-                    printf("Total: %d cases to the right\n\n", movTower);
+                    tower(dirTower, movTower);
+                    printf("Total: %d cases to the selected direction\n\n", movTower);
                     break;
                     //Bishop
                     case 'b':
@@ -84,12 +85,32 @@ int main(){
     return 0;
 }
 
-//Tower recursive function 
-void tower(int n){
+//Tower recursive function with switch
+void tower(char dir, int n){
     if(n <= 0) return; //recursive base case
-    for(int i = 1; i < 2; i++){
-        printf("Right\n");
-    } tower(n -1);
+    //switch menu to show direction choosed
+    switch(dir){
+        case 'u':
+        case 'U': 
+        for(int i = 1; i < 2; i++){
+            printf("Up\n");
+        } tower(dir, n -1); break;
+        case 'd':
+        case 'D':
+        for(int i = 1; i < 2; i++){
+            printf("Down\n");
+        } tower(dir, n -1); break;
+        case 'l':
+        case 'L':
+        for(int i = 1; i < 2; i++){
+            printf("Left\n");
+        } tower(dir, n -1); break;
+        case 'r':
+        case 'R':
+        for(int i = 1; i < 2; i++){
+            printf("Right\n");
+        } tower(dir, n -1); break;
+    }
 }
 
 //Queen recursive function
