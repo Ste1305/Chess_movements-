@@ -109,11 +109,11 @@ void knight(){
 
 //Bihop recursive function with nested for loops
 void bishop(int n){
-    if(n <= 0) return; { 
-        for(int i = 1; i < 2; i++){ //extrenal loop showing Up movements
-            for(int j = 1; j == i; j++){ //internal loops showing Right movements
-                printf("Right\n");
-            } printf("Up\n");
-        }
-    } bishop(n - 1);// recursion
+    if(n <= 0) return; 
+    for(int i = 1; i < 2; i++){ //extrenal loop showing Up movements
+        for(int j = 1; j == i; j++){ //internal loops showing Right movements
+            printf("Right\n");
+        } printf("Up\n");
+    }
+    bishop(n - 1);// recursion
 } 
